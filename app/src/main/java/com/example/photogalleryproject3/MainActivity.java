@@ -477,10 +477,10 @@ public class MainActivity extends AppCompatActivity
             textViewforDate.setText((CharSequence) dateListF.get(currentElement).toString());
 
             //6. Find out the number of faces in the photo--------------IL
-            //int x = faceRecognitionV2(mCurrentPhotoPath);
+           // int x = faceRecognitionV2(mCurrentPhotoPath);
             //7. -display the number of face detected if any. ----------------IL
-            //TextView textViewforFaceNum = findViewById(R.id.FaceNum_TextView);
-            //textViewforFaceNum.setText("number of face : " + String.valueOf(x));
+           // TextView textViewforFaceNum = findViewById(R.id.FaceNum_TextView);
+           // textViewforFaceNum.setText("number of face : " + String.valueOf(x));
 
 
             //8 . Set the location information to the location information of the given image
@@ -706,6 +706,8 @@ public class MainActivity extends AppCompatActivity
 
     // ----------------face recognition -------------------------- IL
     private int faceRecognitionV2(String imagePath) {
+        //  smallest desired face size proportion to image width
+        float face_proportion = 0.1f;
         // load image file to bitmap
         BitmapFactory.Options bitmapFatoryOptions = new BitmapFactory.Options();
         bitmapFatoryOptions.inPreferredConfig = Bitmap.Config.RGB_565;
@@ -714,7 +716,8 @@ public class MainActivity extends AppCompatActivity
         Context context = getApplicationContext();
         FaceDetector detector = new FaceDetector.Builder(context)
                 .setTrackingEnabled(false)
-                .setLandmarkType(FaceDetector.ALL_LANDMARKS)
+                //.setLandmarkType(FaceDetector.ALL_LANDMARKS)
+                .setMinFaceSize(face_proportion)
                 .build();
         Frame frame = new Frame.Builder().setBitmap(bitmap_image).build();
         SparseArray<Face> faces = detector.detect(frame);

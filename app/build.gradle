@@ -37,7 +37,7 @@ dependencies {
 	testImplementation 'androidx.test:core:1.0.0'
 
     // for the QR scanning IL
-    compile 'com.android.support:appcompat-v7:25.0.1'
+   // compile 'com.android.support:appcompat-v7:25.0.1'
 
 
 }
